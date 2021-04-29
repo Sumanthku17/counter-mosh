@@ -4,13 +4,18 @@ class Counter extends Component {
     state =
     {
         count : 1,
-        tag : ['tag1','tag2','tag3']
+        tag : []
     };
-    styles =
+
+    renderTags()
     {
-        fontWeight : "bold",
-        fontSize : 20
-    };
+        if(this.state.tag.length === 0)
+            return <p>no tags available</p>
+        return <ul>
+            {this.state.tag.map(tag => <li key= {tag}>{tag}</li>)}      
+        </ul>
+    }
+    
     render() { 
 
         //let classs = this.badgeColorProvision();
@@ -18,26 +23,12 @@ class Counter extends Component {
         return (
 
         <React.Fragment> 
-            <span style={this.styles} className={this.badgeColorProvision()}>{this.myfunc()}</span>
-            <button className="btn btn-secondary btn-sm m-2">my</button> 
-            <ul>
-                {this.state.tag.map(tag => <li key= {tag}>{tag}</li>)}      
-            </ul>
-        </React.Fragment> // key need to be specified to take out react warning 
+            {this.state.tag.length === 0 && "Please create a tag"}
+            {this.renderTags()}
+        </React.Fragment> // conditions in JSX be like: {this.state.tag.length === 0 && "Please create a tag"} // o/p : Please create a tag
         );
     }
 
-    badgeColorProvision() {
-        let classs = "badge m-2 badge-";
-        classs += this.co === 0 ? "warning" : "primary";
-        return classs;
-    }
-
-    myfunc()
-    {
-        const {count : co} = this.state; //obj destruction
-        return co === 0 ? "ZERO" : co;
-    }
 
 }
  
