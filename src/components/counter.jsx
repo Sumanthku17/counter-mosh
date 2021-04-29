@@ -3,29 +3,29 @@ import React, { Component } from 'react';
 class Counter extends Component {
     state =
     {
-        count : 1,
-        tag : []
+        count : 1
     };
 
-    renderTags()
+    // constructor()
+    // {
+    //     super();
+    //     this.handleInc = this.handleInc.bind(this);
+    // }
+    
+
+    handleInc = () =>
     {
-        if(this.state.tag.length === 0)
-            return <p>no tags available</p>
-        return <ul>
-            {this.state.tag.map(tag => <li key= {tag}>{tag}</li>)}      
-        </ul>
+        console.log('inc clicked',this);
     }
     
     render() { 
 
-        //let classs = this.badgeColorProvision();
 
         return (
 
         <React.Fragment> 
-            {this.state.tag.length === 0 && "Please create a tag"}
-            {this.renderTags()}
-        </React.Fragment> // conditions in JSX be like: {this.state.tag.length === 0 && "Please create a tag"} // o/p : Please create a tag
+            <button onClick={this.handleInc} className="btn btn-secondary btn-sm">mine</button>
+        </React.Fragment> // handling prob of this pointing to window or undef in two ways 1. using construnctor and bind method 2. using arrow func
         );
     }
 
