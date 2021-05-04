@@ -13,10 +13,15 @@ class Counter extends Component {
     // }
     
 
-    handleInc = () =>
+    handleInc = (prodId) =>
     {
-        //console.log('inc clicked',this);
+        console.log(prodId);
         this.setState({count : this.state.count+1})
+    }
+
+    doHandleInc = () =>
+    {
+        this.handleInc({ID : 1});
     }
     
     render() { 
@@ -26,8 +31,12 @@ class Counter extends Component {
 
         <React.Fragment> 
             <span className={this.getBadge()}>{this.counting()}</span>
-            <button onClick={this.handleInc} className="btn btn-secondary btn-sm">mine</button>
-        </React.Fragment> // handling prob of this pointing to window or undef in two ways 1. using construnctor and bind method 2. using arrow func
+            
+            <button onClick={() =>
+            {
+                this.handleInc({ID : 1});
+            }} className="btn btn-secondary btn-sm">mine</button> 
+        </React.Fragment> // if we need to add a parameter to handleInc reference; we add a method 1st, "doHandleInc"  2. then we doHandleInc method and replace with its arrow function
         );
     }
 
