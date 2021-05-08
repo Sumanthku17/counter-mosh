@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
     state =
     {
-        count : 0
+        value : this.props.value
     };
 
     // constructor()
@@ -12,43 +12,36 @@ class Counter extends Component {
     //     this.handleInc = this.handleInc.bind(this);
     // }
     
-
-    handleInc = (prodId) =>
+    
+    handleInc = () =>
     {
-        console.log(prodId);
-        this.setState({count : this.state.count+1})
-    }
-
-    doHandleInc = () =>
-    {
-        this.handleInc({ID : 1});
+        //console.log('inc clicked',this);
+        this.setState({value : this.state.value+1})
     }
     
     render() { 
-
+         console.log('props', this.props);
 
         return (
 
         <React.Fragment> 
-            <span className={this.getBadge()}>{this.counting()}</span>
             
-            <button onClick={() =>
-            {
-                this.handleInc({ID : 1});
-            }} className="btn btn-secondary btn-sm">mine</button> 
-        </React.Fragment> // if we need to add a parameter to handleInc reference; we add a method 1st, "doHandleInc"  2. then we doHandleInc method and replace with its arrow function
+            <span className={this.getBadge()}>{this.counting()}</span>
+            <button onClick={this.handleInc} className="btn btn-secondary btn-sm">Inc</button>
+            <br />
+        </React.Fragment> // handling prob of this pointing to window or undef in two ways 1. using construnctor and bind method 2. using arrow func
         );
     }
 
     counting()
     {
-        return this.state.count === 0 ? "zero" : this.state.count;
+        return this.state.value === 0 ? "zero" : this.state.value;
     }
 
     getBadge()
     {
         let classes = "badge m-2 badge-";
-        classes += this.state.count === 0 ? "warning" : "primary"
+        classes += this.state.value === 0 ? "warning" : "primary"
         return classes;
     }
 
