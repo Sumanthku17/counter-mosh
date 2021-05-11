@@ -11,15 +11,47 @@ class Counters extends Component {
         ]
      }
 
-     handleDelete = () =>
+    //  constructor()
+    //  {
+    //      super();
+    //      this.Cid = this.Cid.bind(this);
+    //  }
+    
+
+    handleReset = () =>
+    {
+        const arr = this.state.arr.map( c => {
+            c.value =0;
+            return c;
+        } );
+        this.setState({arr});
+    };
+
+    handleIncrement = counter =>
+    {
+        const arr = [...this.state.arr];
+        const index = arr.indexOf(counter);
+        arr[index] = {...counter};
+        arr[index].value++;
+        this.setState({arr});
+    };
+
+
+     handleDelete = Cid =>
      {
-        console.log("handling del");
-     }
+        const arr = this.state.arr.filter(counting => counting.id !== Cid)
+        this.setState({arr});
+     };
 
     render() { 
         return (
             <div>
-                {this.state.arr.map(ctr => <Counter onDelete ={this.handleDelete} key={ctr.id} value = {ctr.value} />)}
+                <button onClick={this.handleReset} className="btn btn-primary btn-sm m-2">Reset</button> <br/>
+                {this.state.arr.map(ctr => <Counter 
+                key={ctr.id} 
+                onDelete ={this.handleDelete} 
+                onIncrement ={this.handleIncrement}
+                counter={ctr}/>)}
             </div>
           );
     }

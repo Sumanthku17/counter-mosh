@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-    state =
-    {
-        value : this.props.value
-    };
+    
 
     // constructor()
     // {
@@ -13,22 +10,19 @@ class Counter extends Component {
     // }
     
     
-    handleInc = () =>
-    {
-        //console.log('inc clicked',this);
-        this.setState({value : this.state.value+1})
-    }
+    
+
+    
     
     render() { 
-         console.log('props', this.props);
+         //console.log('props', this.props);
 
         return (
 
         <React.Fragment> 
-            
             <span className={this.getBadge()}>{this.counting()}</span>
-            <button onClick={this.handleInc} className="btn btn-secondary btn-sm">Inc</button>
-            <button onClick={this.props.onDelete} className="btn btn-danger btn-sm m-2">Delete</button>
+            <button onClick={() => this.props.onIncrement(this.props.counter)} className="btn btn-secondary btn-sm m-2">Increment</button>
+            <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">Delete</button>
             <br />
         </React.Fragment> // handling prob of this pointing to window or undef in two ways 1. using construnctor and bind method 2. using arrow func
         );
@@ -36,13 +30,13 @@ class Counter extends Component {
 
     counting()
     {
-        return this.state.value === 0 ? "zero" : this.state.value;
+        return this.props.counter.value === 0 ? "zero" : this.props.counter.value;
     }
 
     getBadge()
     {
         let classes = "badge m-2 badge-";
-        classes += this.state.value === 0 ? "warning" : "primary"
+        classes += this.props.counter.value === 0 ? "warning" : "primary"
         return classes;
     }
 
