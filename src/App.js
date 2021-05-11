@@ -5,6 +5,17 @@ import NavBar from './components/navbar';
 
 class App extends Component {
 
+  constructor()
+  {
+    super();
+    console.log("constructer called.")
+  }
+
+  componentDidMount()
+  {
+    console.log("componentDidMount called");
+  }
+
   state = { 
     arr : [
         { id:1, value:0 },
@@ -42,6 +53,7 @@ handleIncrement = counter =>
  };
   render()
   {
+    console.log("render called");
   return (
     <react.Fragment>
       <NavBar totalCount = {this.state.arr.filter(obj => obj.value>0).length}/>

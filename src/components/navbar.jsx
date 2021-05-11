@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 const navBar = (props) => {// if u don't have any states or methods defined in a comp.. u can change it to StateLess Functional Component[SFC].
+    console.log("NavBar called");
     return ( 
          
         <nav className="navbar navbar-light bg-light">
