@@ -9,12 +9,18 @@ class App extends Component {
   {
     super();
     console.log("constructer called.")
-  }
+  }// we should not include this.setState in constructors.
 
   componentDidMount()
   {
     console.log("componentDidMount called");
   }
+
+  componentDidUpdate()
+  {
+  console.log("componentDidUpdate called")
+  }
+
 
   state = { 
     arr : [
